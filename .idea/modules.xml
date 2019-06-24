@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\AndroidStudioProjects\E-Legion\Course3-AndroidAppsArhitect\behancer\app\app.iml" filepath="C:\AndroidStudioProjects\E-Legion\Course3-AndroidAppsArhitect\behancer\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/behancer.iml" filepath="$PROJECT_DIR$/behancer.iml" />
-      <module fileurl="file://C:\AndroidStudioProjects\E-Legion\Course3-AndroidAppsArhitect\behancer\coursera.iml" filepath="C:\AndroidStudioProjects\E-Legion\Course3-AndroidAppsArhitect\behancer\coursera.iml" />
     </modules>
   </component>
 </project>
