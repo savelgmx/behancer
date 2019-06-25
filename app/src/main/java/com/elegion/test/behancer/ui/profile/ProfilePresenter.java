@@ -20,14 +20,15 @@ public class ProfilePresenter extends BasePresenter {
         this.mView = view;
         this.mStorage = storage;
     }
-    public void getProfile(){
+    public void getProfile(String mUser){
+        this.mUsername=mUser;
         //сюда переносим код из getProfile() ProfileFragment
-        mCompositeDisposable.add(ApiUtils.getApiService().getUserInfo(mUsername)
+        mCompositeDisposable.add(ApiUtils.getApiService().getUserInfo(this.mUsername)
                 .subscribeOn(Schedulers.io())
                 .doOnSuccess(response -> mStorage.insertUser(response))
                 .onErrorReturn(throwable ->
                         ApiUtils.NETWORK_EXCEPTIONS.contains(throwable.getClass()) ?
-                                mStorage.getUser(mUsername) :null)
+                                mStorage.getUser(this.mUsername) :null)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> mView.showRefresh())
                 .doFinally(() -> mView.hideRefresh())

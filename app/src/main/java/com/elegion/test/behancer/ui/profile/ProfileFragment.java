@@ -98,7 +98,7 @@ public class ProfileFragment extends PresenterFragment<ProfilePresenter>
 
     @Override
     public void onRefreshData() {
-        mPresenter.getProfile();
+        mPresenter.getProfile(mUsername);
     }
 
     public void bind(User user) {
