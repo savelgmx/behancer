@@ -1,5 +1,6 @@
 package com.elegion.test.behancer.ui.projects;
 
+import com.arellomobile.mvp.InjectViewState;
 import com.elegion.test.behancer.BuildConfig;
 import com.elegion.test.behancer.common.BasePresenter;
 import com.elegion.test.behancer.data.Storage;
@@ -11,8 +12,8 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by andrew on 07.06.2019.
  */
-
-public class ProjectsPresenter extends BasePresenter {
+@InjectViewState
+public class ProjectsPresenter extends BasePresenter<ProjectsView> {
     private final ProjectsView mView;
     private final Storage mStorage;
 
