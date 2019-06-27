@@ -116,6 +116,7 @@ public class ProjectsFragment extends PresenterFragment
     @Override
     public void showRefresh() {
 
+        mRefreshOwner.setRefreshState(true);
     }
 
     @Override

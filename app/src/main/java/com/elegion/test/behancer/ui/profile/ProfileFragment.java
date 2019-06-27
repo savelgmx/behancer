@@ -28,7 +28,7 @@ import com.squareup.picasso.Picasso;
  implements Refreshable,ProjectsView, ProjectsAdapter.OnItemClickListener {
  */
 
-public class ProfileFragment extends PresenterFragment<ProfilePresenter>
+public class ProfileFragment extends PresenterFragment
         implements Refreshable,ProfileView {
 
     public static final String PROFILE_KEY = "PROFILE_KEY";
