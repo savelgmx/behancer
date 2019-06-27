@@ -14,32 +14,30 @@ import io.reactivex.schedulers.Schedulers;
  */
 @InjectViewState
 public class ProjectsPresenter extends BasePresenter<ProjectsView> {
-    private final ProjectsView mView;
+
     private final Storage mStorage;
 
-    public ProjectsPresenter(ProjectsView view, Storage storage) {
-        this.mView = view;
-        this.mStorage = storage;
+    public ProjectsPresenter(Storage storage) {
+        mStorage = storage;
     }
 
-    public void getProjects(){
-
-        mCompositeDisposable.add(ApiUtils.getApiService().getProjects(BuildConfig.API_QUERY)
-                .doOnSuccess(response -> mStorage.insertProjects(response))
-                .onErrorReturn(throwable ->
-                        ApiUtils.NETWORK_EXCEPTIONS.contains(throwable.getClass()) ? mStorage.getProjects() : null)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(disposable ->mView.showRefresh())
-                .doFinally(() -> mView.hideRefresh())
-                .subscribe(
-                        response ->  mView.showProjects(response.getProjects()),
-                        throwable ->  mView.showError()));
-
-
+    public void getProjects() {
+        mCompositeDisposable.add(
+                ApiUtils.getApiService().getProjects(BuildConfig.API_QUERY)
+                        .subscribeOn(Schedulers.io())
+                        .doOnSuccess(mStorage::insertProjects)
+                        .onErrorReturn(throwable ->
+                                ApiUtils.NETWORK_EXCEPTIONS.contains(throwable.getClass()) ? mStorage.getProjects() : null)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe(disposable -> getViewState().showRefresh())
+                        .doFinally(getViewState()::hideRefresh)
+                        .subscribe(
+                                response -> getViewState().showProjects(response.getProjects()),
+                                throwable -> getViewState().showError())
+        );
     }
-    public void openProfileFragment(String username){
-        mView.openProfileFragment(username);
 
+    public void openProfileFragment(String username) {
+        getViewState().openProfileFragment(username);
     }
 }
