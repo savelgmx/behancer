@@ -50,7 +50,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsHolder> {
             mProjects.clear();
         }
 
-        // TODO: 09.04.2018 ДЗ обработать кейс с data.size == 0 || data == null
+
 
         mProjects.addAll(data);
         notifyDataSetChanged();

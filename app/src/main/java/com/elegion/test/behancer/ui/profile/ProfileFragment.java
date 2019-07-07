@@ -27,6 +27,8 @@ import com.squareup.picasso.Picasso;
  public class ProjectsFragment extends PresenterFragment<ProjectsPresenter>
  implements Refreshable,ProjectsView, ProjectsAdapter.OnItemClickListener {
  */
+//TODO На ProfileFragment добавить кнопку,
+// которая ведет на экран со списком проектов этого пользователя - UserProjectsFragment
 
 public class ProfileFragment extends PresenterFragment
         implements Refreshable,ProfileView {

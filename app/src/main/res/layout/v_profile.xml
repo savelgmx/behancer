@@ -48,4 +48,16 @@
         android:layout_alignStart="@id/tv_created_on_details"
         android:layout_below="@id/tv_created_on_details" />
 
+    <Button
+        android:id="@+id/userProjectsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="167dp"
+        android:layout_marginStart="167dp"
+        android:layout_marginTop="442dp"
+        android:text="User Projects" />
+
 </RelativeLayout>
