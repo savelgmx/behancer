@@ -49,7 +49,7 @@
         android:layout_below="@id/tv_created_on_details" />
 
     <Button
-        android:id="@+id/userProjectsBtn"
+        android:id="@+id/buttonUserProjects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

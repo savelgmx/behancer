@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +28,7 @@ import com.squareup.picasso.Picasso;
  public class ProjectsFragment extends PresenterFragment<ProjectsPresenter>
  implements Refreshable,ProjectsView, ProjectsAdapter.OnItemClickListener {
  */
-//TODO На ProfileFragment добавить кнопку,
-// которая ведет на экран со списком проектов этого пользователя - UserProjectsFragment
+
 
 public class ProfileFragment extends PresenterFragment
         implements Refreshable,ProfileView {
@@ -46,6 +46,8 @@ public class ProfileFragment extends PresenterFragment
     private TextView mProfileName;
     private TextView mProfileCreatedOn;
     private TextView mProfileLocation;
+    private Button mButtonUserProjects;
+
 
     public static ProfileFragment newInstance(Bundle args) {
         ProfileFragment fragment = new ProfileFragment();
@@ -65,6 +67,9 @@ public class ProfileFragment extends PresenterFragment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        mButtonUserProjects.setOnClickListener(mOnUserProjectsClickListener);
+
         return inflater.inflate(R.layout.fr_profile, container, false);
     }
 
@@ -77,6 +82,7 @@ public class ProfileFragment extends PresenterFragment
         mProfileName = view.findViewById(R.id.tv_display_name_details);
         mProfileCreatedOn = view.findViewById(R.id.tv_created_on_details);
         mProfileLocation = view.findViewById(R.id.tv_location_details);
+        mButtonUserProjects = view.findViewById(R.id.buttonUserProjects);
     }
 
     @Override
@@ -150,4 +156,12 @@ public class ProfileFragment extends PresenterFragment
         bind(user);
 
     }
+    //На ProfileFragment добавить кнопку,
+    // которая ведет на экран со списком проектов этого пользователя - UserProjectsFragment
+    private View.OnClickListener mOnUserProjectsClickListener=(view)->{
+        //TODO отобразить UserProjectsFragment для работы
+
+    };
+
+
 }
