@@ -1,5 +1,7 @@
 package com.elegion.test.behancer.ui.userprojects;
 
+import android.support.v4.app.Fragment;
+
 import com.elegion.test.behancer.common.BasePresenter;
 import com.elegion.test.behancer.common.PresenterFragment;
 import com.elegion.test.behancer.common.Refreshable;
@@ -8,7 +10,7 @@ import com.elegion.test.behancer.data.model.user.User;
 /**
  * Created by andrew on 07.07.2019.
  * По факту, это будет экран, похожий на ProjectsFragment,
- * поэтому вам нужно по максимуму переиспользовать текущий код,
+ * поэтому нужно по максимуму переиспользовать текущий код,
  * добавив/переписав где надо View и Presenter.
  *
  */
@@ -45,5 +47,11 @@ public class UserProjectsFragment extends PresenterFragment
     @Override
     public void showUserProjects(User user) {
 
+        //отобразить проекты пользователей
+
+    }
+
+    public static UserProjectsFragment newInstance() {
+        return new UserProjectsFragment();
     }
 }

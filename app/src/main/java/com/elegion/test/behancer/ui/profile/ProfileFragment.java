@@ -160,7 +160,6 @@ public class ProfileFragment extends PresenterFragment
     // которая ведет на экран со списком проектов этого пользователя - UserProjectsFragment
     private View.OnClickListener mOnUserProjectsClickListener=(view)->{
         //TODO отобразить UserProjectsFragment для работы
-
     };
 
 
