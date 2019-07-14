@@ -17,6 +17,7 @@ import com.elegion.test.behancer.common.RefreshOwner;
 import com.elegion.test.behancer.common.Refreshable;
 import com.elegion.test.behancer.data.Storage;
 import com.elegion.test.behancer.data.model.user.User;
+import com.elegion.test.behancer.ui.projects.ProjectsFragment;
 import com.elegion.test.behancer.utils.DateUtils;
 import com.squareup.picasso.Picasso;
 
@@ -66,11 +67,14 @@ public class ProfileFragment extends PresenterFragment
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view =inflater.inflate(R.layout.fr_profile, container, false);
 
+        mButtonUserProjects = view.findViewById(R.id.buttonUserProjects);
         mButtonUserProjects.setOnClickListener(mOnUserProjectsClickListener);
 
-        return inflater.inflate(R.layout.fr_profile, container, false);
+        return view ;
     }
 
     @Override
@@ -82,7 +86,6 @@ public class ProfileFragment extends PresenterFragment
         mProfileName = view.findViewById(R.id.tv_display_name_details);
         mProfileCreatedOn = view.findViewById(R.id.tv_created_on_details);
         mProfileLocation = view.findViewById(R.id.tv_location_details);
-        mButtonUserProjects = view.findViewById(R.id.buttonUserProjects);
     }
 
     @Override
@@ -158,9 +161,18 @@ public class ProfileFragment extends PresenterFragment
     }
     //На ProfileFragment добавить кнопку,
     // которая ведет на экран со списком проектов этого пользователя - UserProjectsFragment
-    private View.OnClickListener mOnUserProjectsClickListener=(view)->{
-        //TODO отобразить UserProjectsFragment для работы
+    private View.OnClickListener mOnUserProjectsClickListener=(viev)-> {
+
+            // TODO отобразить UserProjectsFragment для работы
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, ProjectsFragment.newInstance())
+                    .addToBackStack(ProjectsFragment.class.getName())
+                    .commit();
+
     };
+
+
 
 
 }
