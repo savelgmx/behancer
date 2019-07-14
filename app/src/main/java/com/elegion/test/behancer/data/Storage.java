@@ -62,12 +62,14 @@ public class Storage {
             project.setCover(mBehanceDao.getCoverFromProject(project.getId()));
             project.setOwners(mBehanceDao.getOwnersFromProject(project.getId()));
         }
-
+    //TODO написать getUserProjects(String username)
         ProjectResponse response = new ProjectResponse();
         response.setProjects(projects);
 
         return response;
     }
+
+
 
     public void insertUser(UserResponse response) {
         User user = response.getUser();
