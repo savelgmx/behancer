@@ -53,11 +53,11 @@ public interface BehanceDao {
     @Query("select * from image where user_id = :userId")
     Image getImageFromUser(int userId);
 
-    //получить список проектов пользователя
+    //получить список проектов пользователя по его имени
     @Query("select *from project inner join userprojects on userprojects.project_id " +
-            "where username=:username")
+            "where username=:userName")
 
-    List<UserProjects> getUserProjects(String userName);
+    List<UserProjects> getUserProjectsByUserName(String userName);
 
 
     @Query("delete from owner")

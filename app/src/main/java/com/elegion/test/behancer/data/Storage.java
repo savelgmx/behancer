@@ -10,6 +10,8 @@ import com.elegion.test.behancer.data.model.project.ProjectResponse;
 import com.elegion.test.behancer.data.model.user.Image;
 import com.elegion.test.behancer.data.model.user.User;
 import com.elegion.test.behancer.data.model.user.UserResponse;
+import com.elegion.test.behancer.data.model.userprojects.UserProjects;
+import com.elegion.test.behancer.data.model.userprojects.UserProjectsResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,8 +64,7 @@ public class Storage {
             project.setCover(mBehanceDao.getCoverFromProject(project.getId()));
             project.setOwners(mBehanceDao.getOwnersFromProject(project.getId()));
         }
-    //TODO написать getUserProjects(String username)
-        ProjectResponse response = new ProjectResponse();
+          ProjectResponse response = new ProjectResponse();
         response.setProjects(projects);
 
         return response;
@@ -90,6 +91,18 @@ public class Storage {
         response.setUser(user);
 
         return response;
+    }
+    //TODO написать getUserProjects(String username)
+
+    public UserProjectsResponse getUserProjects(String username){
+        List<UserProjects> userProjects = mBehanceDao.getUserProjectsByUserName(username);
+
+        UserProjectsResponse response= new UserProjectsResponse(); //userprojects
+
+
+        response.setUserProjects(userProjects);
+
+        return response;//userprojects
     }
 
     public interface StorageOwner {

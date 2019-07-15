@@ -12,6 +12,9 @@ import com.elegion.test.behancer.common.BasePresenter;
 import com.elegion.test.behancer.common.PresenterFragment;
 import com.elegion.test.behancer.common.Refreshable;
 import com.elegion.test.behancer.data.model.user.User;
+import com.elegion.test.behancer.data.model.userprojects.UserProjects;
+
+import java.util.List;
 
 /**
  * Created by andrew on 07.07.2019.
@@ -68,14 +71,14 @@ public class UserProjectsFragment extends PresenterFragment
 
     }
 
-    @Override
-    public void showUserProjects(User user) {
 
-        //отобразить проекты пользователей
-
-    }
 
     public static UserProjectsFragment newInstance() {
         return new UserProjectsFragment();
+    }
+
+    @Override
+    public void showUserProjects(List<UserProjects> userprojects) {
+
     }
 }

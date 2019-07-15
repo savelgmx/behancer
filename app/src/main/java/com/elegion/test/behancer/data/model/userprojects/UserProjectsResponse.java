@@ -14,12 +14,17 @@ public class UserProjectsResponse implements Serializable {
 
    private List<UserProjects> mUserProjects;
 
-    public List<UserProjects> getUserProjects() {
+    public List<UserProjects> getUserProjects(String username) {
         return mUserProjects;
     }
 
+/*
     public void setProjects(List<UserProjects> userprojects) {
         mUserProjects = userprojects;
     }
+*/
 
+    public void setUserProjects(List<UserProjects> userprojects) {
+        mUserProjects = userprojects;
+    }
 }
