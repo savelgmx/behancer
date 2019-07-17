@@ -163,8 +163,7 @@ public class ProfileFragment extends PresenterFragment
     // которая ведет на экран со списком проектов этого пользователя - UserProjectsFragment
     private View.OnClickListener mOnUserProjectsClickListener=(viev)-> {
 
-            // TODO отобразить UserProjectsFragment для работы
-            getFragmentManager()
+             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragmentContainer, ProjectsFragment.newInstance())
                     .addToBackStack(ProjectsFragment.class.getName())

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.elegion.test.behancer.R;
 import com.elegion.test.behancer.common.BasePresenter;
 import com.elegion.test.behancer.common.PresenterFragment;
@@ -26,6 +27,9 @@ import java.util.List;
 
 public class UserProjectsFragment extends PresenterFragment
         implements Refreshable,UserProjectsView{
+
+    @InjectPresenter
+    UserProjectsPresenter mPresenter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fr_projects, container, false);
@@ -48,6 +52,10 @@ public class UserProjectsFragment extends PresenterFragment
 
     @Override
     public void onRefreshData() {
+
+        //TODO getUserProjects in Presenter
+        //TODO solve problem with mUser
+      //  mPresenter.getUserProjects(mUser);
 
     }
 

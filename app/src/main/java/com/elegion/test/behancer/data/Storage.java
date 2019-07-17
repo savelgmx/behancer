@@ -92,7 +92,11 @@ public class Storage {
 
         return response;
     }
-    //TODO написать getUserProjects(String username)
+    public void insertUserProjects(UserProjectsResponse response){
+
+
+    }
+
 
     public UserProjectsResponse getUserProjects(String username){
         List<UserProjects> userProjects = mBehanceDao.getUserProjectsByUserName(username);

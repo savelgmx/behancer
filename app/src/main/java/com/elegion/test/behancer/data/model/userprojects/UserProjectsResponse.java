@@ -14,7 +14,7 @@ public class UserProjectsResponse implements Serializable {
 
    private List<UserProjects> mUserProjects;
 
-    public List<UserProjects> getUserProjects(String username) {
+    public List<UserProjects> getUserProjects() {
         return mUserProjects;
     }
 
