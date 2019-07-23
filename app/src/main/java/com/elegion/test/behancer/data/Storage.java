@@ -102,8 +102,6 @@ public class Storage {
         List<UserProjects> userProjects = mBehanceDao.getUserProjectsByUserName(username);
 
         UserProjectsResponse response= new UserProjectsResponse(); //userprojects
-
-
         response.setUserProjects(userProjects);
 
         return response;//userprojects

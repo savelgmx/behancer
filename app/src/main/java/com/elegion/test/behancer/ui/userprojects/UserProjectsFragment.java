@@ -12,7 +12,6 @@ import com.elegion.test.behancer.R;
 import com.elegion.test.behancer.common.BasePresenter;
 import com.elegion.test.behancer.common.PresenterFragment;
 import com.elegion.test.behancer.common.Refreshable;
-import com.elegion.test.behancer.data.model.user.User;
 import com.elegion.test.behancer.data.model.userprojects.UserProjects;
 
 import java.util.List;
