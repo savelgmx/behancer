@@ -68,4 +68,4 @@ public abstract class SingleFragmentActivity extends AppCompatActivity
     public void setRefreshState(boolean refreshing) {
         mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(refreshing));
     }
-}
+} 
