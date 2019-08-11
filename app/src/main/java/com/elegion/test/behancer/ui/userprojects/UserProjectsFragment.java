@@ -27,6 +27,9 @@ import java.util.List;
 public class UserProjectsFragment extends PresenterFragment
         implements Refreshable,UserProjectsView{
 
+    public static final String USER_PROJECTS_KEY = "USER_PROJECTS_KEY";
+
+
     @InjectPresenter
     UserProjectsPresenter mPresenter;
 
@@ -54,7 +57,9 @@ public class UserProjectsFragment extends PresenterFragment
 
         //TODO getUserProjects in Presenter
         //TODO solve problem with mUser
-      //  mPresenter.getUserProjects(mUser);
+
+      //   mPresenter.getUserProjects(mUser);
+        mPresenter.getUserProjects("aarsohottt1b42");
 
     }
 
@@ -80,8 +85,11 @@ public class UserProjectsFragment extends PresenterFragment
 
 
 
-    public static UserProjectsFragment newInstance() {
-        return new UserProjectsFragment();
+    public static UserProjectsFragment newInstance(Bundle args) {
+
+        UserProjectsFragment fragment = new UserProjectsFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override

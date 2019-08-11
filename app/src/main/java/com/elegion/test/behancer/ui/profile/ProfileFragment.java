@@ -1,6 +1,7 @@
 package com.elegion.test.behancer.ui.profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,7 +18,8 @@ import com.elegion.test.behancer.common.RefreshOwner;
 import com.elegion.test.behancer.common.Refreshable;
 import com.elegion.test.behancer.data.Storage;
 import com.elegion.test.behancer.data.model.user.User;
-import com.elegion.test.behancer.ui.projects.ProjectsFragment;
+import com.elegion.test.behancer.ui.userprojects.UserProjectsActivity;
+import com.elegion.test.behancer.ui.userprojects.UserProjectsFragment;
 import com.elegion.test.behancer.utils.DateUtils;
 import com.squareup.picasso.Picasso;
 
@@ -163,11 +165,19 @@ public class ProfileFragment extends PresenterFragment
     // которая ведет на экран со списком проектов этого пользователя - UserProjectsFragment
     private View.OnClickListener mOnUserProjectsClickListener=(viev)-> {
 
+/*
              getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragmentContainer, ProjectsFragment.newInstance())
                     .addToBackStack(ProjectsFragment.class.getName())
                     .commit();
+*/
+
+        Intent intent = new Intent(getActivity(), UserProjectsActivity.class);
+        Bundle args = new Bundle();
+        args.putString(UserProjectsFragment.USER_PROJECTS_KEY, mUsername);
+        intent.putExtra(UserProjectsActivity.USERNAME_KEY, args);
+        startActivity(intent);
 
     };
 
