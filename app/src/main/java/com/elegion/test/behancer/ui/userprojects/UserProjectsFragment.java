@@ -28,10 +28,19 @@ public class UserProjectsFragment extends PresenterFragment
         implements Refreshable,UserProjectsView{
 
     public static final String USER_PROJECTS_KEY = "USER_PROJECTS_KEY";
+/*
+    @InjectPresenter*/
+    private UserProjectsPresenter mPresenter;
 
 
-    @InjectPresenter
-    UserProjectsPresenter mPresenter;
+public static UserProjectsFragment newInstance(Bundle args){
+    UserProjectsFragment fragment = new UserProjectsFragment();
+    fragment.setArguments(args);
+    return fragment;
+}
+
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fr_projects, container, false);
@@ -59,6 +68,8 @@ public class UserProjectsFragment extends PresenterFragment
         //TODO solve problem with mUser
 
       //   mPresenter.getUserProjects(mUser);
+
+
         mPresenter.getUserProjects("aarsohottt1b42");
 
     }
@@ -84,13 +95,6 @@ public class UserProjectsFragment extends PresenterFragment
     }
 
 
-
-    public static UserProjectsFragment newInstance(Bundle args) {
-
-        UserProjectsFragment fragment = new UserProjectsFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void showUserProjects(List<UserProjects> userprojects) {
