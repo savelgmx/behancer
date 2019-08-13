@@ -12,6 +12,7 @@ import com.elegion.test.behancer.R;
 import com.elegion.test.behancer.common.BasePresenter;
 import com.elegion.test.behancer.common.PresenterFragment;
 import com.elegion.test.behancer.common.Refreshable;
+import com.elegion.test.behancer.data.Storage;
 import com.elegion.test.behancer.data.model.userprojects.UserProjects;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class UserProjectsFragment extends PresenterFragment
 /*
     @InjectPresenter*/
     private UserProjectsPresenter mPresenter;
+    private Storage mStorage;
 
 
 public static UserProjectsFragment newInstance(Bundle args){
@@ -58,6 +60,9 @@ public static UserProjectsFragment newInstance(Bundle args){
         if (getActivity() != null) {
             getActivity().setTitle(R.string.user_projects);
         }
+
+
+        mPresenter=new UserProjectsPresenter(mStorage);
         onRefreshData();
     }
 
