@@ -1,18 +1,25 @@
 package com.elegion.test.behancer.ui.userprojects;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.elegion.test.behancer.R;
 import com.elegion.test.behancer.common.BasePresenter;
 import com.elegion.test.behancer.common.PresenterFragment;
+import com.elegion.test.behancer.common.RefreshOwner;
 import com.elegion.test.behancer.common.Refreshable;
 import com.elegion.test.behancer.data.Storage;
 import com.elegion.test.behancer.data.model.userprojects.UserProjects;
+import com.elegion.test.behancer.ui.projects.ProjectsAdapter;
 
 import java.util.List;
 
@@ -28,11 +35,30 @@ public class UserProjectsFragment extends PresenterFragment
         implements Refreshable,UserProjectsView{
 
     public static final String USER_PROJECTS_KEY = "USER_PROJECTS_KEY";
-/*
-    @InjectPresenter*/
-    private UserProjectsPresenter mPresenter;
+
+    private RecyclerView mRecyclerView;
+    private RefreshOwner mRefreshOwner;
+    private View mErrorView;
+    private UserProjectsAdapter mUserProjectsAdapter;
     private Storage mStorage;
 
+
+
+    /* private*/
+
+    @InjectPresenter
+    UserProjectsPresenter mPresenter;
+
+
+    @ProvidePresenter
+    UserProjectsPresenter providePresenter(){
+        return new UserProjectsPresenter(mStorage);
+    }
+
+    @Override
+    protected UserProjectsPresenter getPresenter(){
+        return mPresenter;
+    }
 
 public static UserProjectsFragment newInstance(Bundle args){
     UserProjectsFragment fragment = new UserProjectsFragment();
@@ -40,6 +66,19 @@ public static UserProjectsFragment newInstance(Bundle args){
     return fragment;
 }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Storage.StorageOwner) {
+            mStorage = ((Storage.StorageOwner) context).obtainStorage();
+        }
+
+        if (context instanceof RefreshOwner) {
+            mRefreshOwner = ((RefreshOwner) context);
+        }
+    }
+    @Nullable
+    @Override
 
 
 
@@ -50,7 +89,9 @@ public static UserProjectsFragment newInstance(Bundle args){
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-     }
+        mRecyclerView = view.findViewById(R.id.recycler);
+        mErrorView = view.findViewById(R.id.errorView);
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -61,40 +102,41 @@ public static UserProjectsFragment newInstance(Bundle args){
         }
 
 
-        mPresenter=new UserProjectsPresenter(mStorage);
+      //  mPresenter=new UserProjectsPresenter(mStorage);
+        mUserProjectsAdapter  = new UserProjectsAdapter();
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(mUserProjectsAdapter);
+
         onRefreshData();
     }
 
     @Override
     public void onRefreshData() {
 
-        //TODO getUserProjects in Presenter
-        //TODO solve problem with mUser
-
       //   mPresenter.getUserProjects(mUser);
 
-
-          mPresenter.getUserProjects("aarsohottt1b42");
+        mPresenter.getUserProjects("aarsohottt1b42");
 
     }
 
-    @Override
-    protected BasePresenter getPresenter() {
-        return null;
-    }
+
 
     @Override
     public void showRefresh() {
+
+        mRefreshOwner.setRefreshState(true);
 
     }
 
     @Override
     public void hideRefresh() {
-
+        mRefreshOwner.setRefreshState(false);
     }
 
     @Override
     public void showError() {
+        mErrorView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
 
     }
 
@@ -102,6 +144,10 @@ public static UserProjectsFragment newInstance(Bundle args){
 
     @Override
     public void showUserProjects(List<UserProjects> userprojects) {
+        mErrorView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+
+        mUserProjectsAdapter.addData(userprojects,true);
 
     }
 }

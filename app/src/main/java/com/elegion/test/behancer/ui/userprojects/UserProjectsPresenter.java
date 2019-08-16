@@ -18,7 +18,9 @@ public class UserProjectsPresenter extends BasePresenter<UserProjectsView> {
 
     private final Storage mStorage;
 
-    public UserProjectsPresenter(Storage storage){mStorage=storage;}
+    public UserProjectsPresenter(Storage storage){
+        mStorage=storage;
+    }
 
     public void getUserProjects(String mUser){
 
@@ -31,11 +33,9 @@ public class UserProjectsPresenter extends BasePresenter<UserProjectsView> {
                         .doOnSubscribe(disposable -> getViewState().showRefresh())
                         .doFinally(getViewState()::hideRefresh)
                         .subscribe(
-                                response -> getViewState().showUserProjects((response.getUserProjects())
-                                )
-                        )
-        );
-
+                                response -> getViewState().showUserProjects(response.getUserProjects()),
+                                        throwable->getViewState().showError())
+                                );
 
     }
 

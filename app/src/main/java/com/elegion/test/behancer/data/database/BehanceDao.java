@@ -54,7 +54,9 @@ public interface BehanceDao {
     Image getImageFromUser(int userId);
 
     //получить список проектов пользователя по его имени on userprojects.project_id = project.project_id"
-    @Query("select *from project inner join userprojects on userprojects.project_id = project.id where username=:userName")
+    //select *from project inner join userprojects on userprojects.project_id = project.id where username=:userName
+
+    @Query("select *from userprojects where username=:userName")
 
     List<UserProjects> getUserProjectsByUserName(String userName);
 
