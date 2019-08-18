@@ -1,15 +1,24 @@
 package com.elegion.test.behancer.ui.userprojects;
 
-import com.elegion.test.behancer.common.BaseView;
-import com.elegion.test.behancer.data.model.userprojects.UserProjects;
-import java.util.List;
+import android.support.annotation.NonNull;
 
-import io.reactivex.annotations.NonNull;
+import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
+import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
+import com.elegion.test.behancer.common.BaseView;
+import com.elegion.test.behancer.data.model.project.Project;
+
+import java.util.List;
 
 /**
  * Created by andrew on 07.07.2019.
  */
 
 public interface UserProjectsView extends BaseView {
-    void showUserProjects(@NonNull List<UserProjects> userprojects);
+  //  void showUserProjects(@NonNull List<UserProjects> userprojects);
+
+
+        @StateStrategyType(value =  AddToEndStrategy.class)
+        void showProjects(@NonNull List<Project> projects);
+
+
 }
