@@ -93,9 +93,9 @@ public class Storage {
         return response;
     }
     public void insertUserProjects(UserProjectsResponse response){
+        List<UserProjects> userProjects = mBehanceDao.getUserProjectsByUserName("hui");
 
-
-    }
+        }
 
 
     public UserProjectsResponse getUserProjects(String username){

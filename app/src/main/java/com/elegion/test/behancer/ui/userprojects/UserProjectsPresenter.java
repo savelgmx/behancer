@@ -1,7 +1,6 @@
 package com.elegion.test.behancer.ui.userprojects;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.elegion.test.behancer.BuildConfig;
 import com.elegion.test.behancer.common.BasePresenter;
 import com.elegion.test.behancer.data.Storage;
 import com.elegion.test.behancer.utils.ApiUtils;
@@ -39,5 +38,24 @@ public class UserProjectsPresenter extends BasePresenter<UserProjectsView> {
 
     }
 
+
+    public void getProjects(String mUsername) {
+
+/*
+        mCompositeDisposable.add(
+                ApiUtils.getApiService().getUserProjects(username)
+                        .subscribeOn(Schedulers.io())
+                        .doOnSuccess(mStorage::insertProjects)
+                        .onErrorReturn(throwable ->
+                                ApiUtils.NETWORK_EXCEPTIONS.contains(throwable.getClass()) ? mStorage.getProjects() : null)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe(disposable -> mView.showRefresh())
+                        .doFinally(mView::hideRefresh)
+                        .subscribe(
+                                response -> mView.showProjects(response.getProjects()),
+                                throwable -> mView.showError())
+        );
+*/
+    }
 
 }

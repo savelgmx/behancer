@@ -13,12 +13,12 @@ import android.view.ViewGroup;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.elegion.test.behancer.R;
-import com.elegion.test.behancer.common.BasePresenter;
 import com.elegion.test.behancer.common.PresenterFragment;
 import com.elegion.test.behancer.common.RefreshOwner;
 import com.elegion.test.behancer.common.Refreshable;
 import com.elegion.test.behancer.data.Storage;
 import com.elegion.test.behancer.data.model.userprojects.UserProjects;
+import com.elegion.test.behancer.ui.profile.ProfileFragment;
 import com.elegion.test.behancer.ui.projects.ProjectsAdapter;
 
 import java.util.List;
@@ -32,7 +32,7 @@ import java.util.List;
  */
 
 public class UserProjectsFragment extends PresenterFragment
-        implements Refreshable,UserProjectsView{
+        implements Refreshable,UserProjectsView,ProjectsAdapter.OnItemClickListener{
 
     public static final String USER_PROJECTS_KEY = "USER_PROJECTS_KEY";
 
@@ -41,13 +41,13 @@ public class UserProjectsFragment extends PresenterFragment
     private View mErrorView;
     private UserProjectsAdapter mUserProjectsAdapter;
     private Storage mStorage;
+    private String mUsername;
+    private ProjectsAdapter mProjectsAdapter;
 
-
-
-    /* private*/
 
     @InjectPresenter
     UserProjectsPresenter mPresenter;
+
 
 
     @ProvidePresenter
@@ -97,15 +97,17 @@ public static UserProjectsFragment newInstance(Bundle args){
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        if (getArguments() != null) {
+            mUsername = getArguments().getString(ProfileFragment.PROFILE_KEY);
+        }
         if (getActivity() != null) {
-            getActivity().setTitle(R.string.user_projects);
+            getActivity().setTitle(R.string.projects);
         }
 
 
-      //  mPresenter=new UserProjectsPresenter(mStorage);
-        mUserProjectsAdapter  = new UserProjectsAdapter();
+        mProjectsAdapter = new ProjectsAdapter(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(mUserProjectsAdapter);
+        mRecyclerView.setAdapter(mProjectsAdapter);
 
         onRefreshData();
     }
@@ -113,9 +115,7 @@ public static UserProjectsFragment newInstance(Bundle args){
     @Override
     public void onRefreshData() {
 
-      //   mPresenter.getUserProjects(mUser);
-
-        mPresenter.getUserProjects("aarsohottt1b42");
+        mPresenter.getProjects(mUsername);
 
     }
 
@@ -148,6 +148,11 @@ public static UserProjectsFragment newInstance(Bundle args){
         mRecyclerView.setVisibility(View.VISIBLE);
 
         mUserProjectsAdapter.addData(userprojects,true);
+
+    }
+
+    @Override
+    public void onItemClick(String username) {
 
     }
 }

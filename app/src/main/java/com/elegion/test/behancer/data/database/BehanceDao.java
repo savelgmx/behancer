@@ -70,6 +70,9 @@ public interface BehanceDao {
     @Query("delete from image")
     void clearImageTable();
 
+    @Query("delete from userprojects")
+    void clearUserProjectsTable();
+
     @Query("select * from user")
     List<User> getUsers();
 
