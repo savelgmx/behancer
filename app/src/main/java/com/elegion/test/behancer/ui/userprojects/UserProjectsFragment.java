@@ -17,7 +17,7 @@ import com.elegion.test.behancer.common.PresenterFragment;
 import com.elegion.test.behancer.common.RefreshOwner;
 import com.elegion.test.behancer.common.Refreshable;
 import com.elegion.test.behancer.data.Storage;
-import com.elegion.test.behancer.data.model.userprojects.UserProjects;
+import com.elegion.test.behancer.data.model.project.Project;
 import com.elegion.test.behancer.ui.profile.ProfileFragment;
 import com.elegion.test.behancer.ui.projects.ProjectsAdapter;
 
@@ -52,7 +52,7 @@ public class UserProjectsFragment extends PresenterFragment
 
     @ProvidePresenter
     UserProjectsPresenter providePresenter(){
-        return new UserProjectsPresenter(mStorage);
+        return new UserProjectsPresenter(this,mStorage);
     }
 
     @Override
@@ -142,6 +142,7 @@ public static UserProjectsFragment newInstance(Bundle args){
 
 
 
+/*
     @Override
     public void showUserProjects(List<UserProjects> userprojects) {
         mErrorView.setVisibility(View.GONE);
@@ -150,6 +151,15 @@ public static UserProjectsFragment newInstance(Bundle args){
         mUserProjectsAdapter.addData(userprojects,true);
 
     }
+
+*/
+@Override
+public void showProjects(@NonNull List<Project> projects) {
+    mErrorView.setVisibility(View.GONE);
+    mRecyclerView.setVisibility(View.VISIBLE);
+    mProjectsAdapter.addData(projects, true);
+}
+
 
     @Override
     public void onItemClick(String username) {

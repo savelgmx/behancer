@@ -16,7 +16,6 @@ import java.util.List;
 public interface UserProjectsView extends BaseView {
   //  void showUserProjects(@NonNull List<UserProjects> userprojects);
 
-
         @StateStrategyType(value =  AddToEndStrategy.class)
         void showProjects(@NonNull List<Project> projects);
 
