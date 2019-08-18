@@ -15,12 +15,15 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class UserProjectsPresenter extends BasePresenter<UserProjectsView> {
 
+    private final UserProjectsView mView;
     private final Storage mStorage;
 
-    public UserProjectsPresenter(Storage storage){
+    public UserProjectsPresenter(UserProjectsView view,Storage storage){
         mStorage=storage;
+        mView = view;
     }
 
+/*
     public void getUserProjects(String mUser){
 
         mCompositeDisposable.add(ApiUtils.getApiService().getUserProjects(mUser)
@@ -37,13 +40,13 @@ public class UserProjectsPresenter extends BasePresenter<UserProjectsView> {
                                 );
 
     }
+*/
 
 
     public void getProjects(String mUsername) {
 
-/*
         mCompositeDisposable.add(
-                ApiUtils.getApiService().getUserProjects(username)
+                ApiUtils.getApiService().getUserProjects(mUsername)
                         .subscribeOn(Schedulers.io())
                         .doOnSuccess(mStorage::insertProjects)
                         .onErrorReturn(throwable ->
@@ -55,7 +58,6 @@ public class UserProjectsPresenter extends BasePresenter<UserProjectsView> {
                                 response -> mView.showProjects(response.getProjects()),
                                 throwable -> mView.showError())
         );
-*/
     }
 
 }
