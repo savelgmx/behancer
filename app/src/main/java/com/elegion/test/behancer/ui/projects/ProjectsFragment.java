@@ -41,7 +41,7 @@ public class ProjectsFragment extends PresenterFragment
 
     @ProvidePresenter
     ProjectsPresenter providePresenter(){
-        return new ProjectsPresenter(mStorage);
+        return new ProjectsPresenter(this, mStorage);
     }
 
     @Override

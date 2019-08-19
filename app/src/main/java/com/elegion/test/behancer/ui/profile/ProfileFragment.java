@@ -167,8 +167,8 @@ public class ProfileFragment extends PresenterFragment
 
         Intent intent = new Intent(getActivity(), UserProjectsActivity.class);
         Bundle args = new Bundle();
-        args.putString(UserProjectsFragment.USER_PROJECTS_KEY, mUsername);
-        intent.putExtra(UserProjectsActivity.USERNAME_KEY, args);
+                args.putString(ProfileFragment.PROFILE_KEY, mUsername);
+                intent.putExtra(ProfileActivity.USERNAME_KEY, args);
         startActivity(intent);
 
     };

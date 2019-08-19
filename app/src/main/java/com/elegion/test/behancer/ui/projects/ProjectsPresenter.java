@@ -17,7 +17,7 @@ public class ProjectsPresenter extends BasePresenter<ProjectsView> {
 
     private final Storage mStorage;
 
-    public ProjectsPresenter(Storage storage) {
+    public ProjectsPresenter(ProjectsView view,Storage storage) {
         mStorage = storage;
     }
 
