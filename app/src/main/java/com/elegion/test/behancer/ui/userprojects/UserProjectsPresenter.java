@@ -23,24 +23,6 @@ public class UserProjectsPresenter extends BasePresenter<UserProjectsView> {
         mView = view;
     }
 
-/*
-    public void getUserProjects(String mUser){
-
-        mCompositeDisposable.add(ApiUtils.getApiService().getUserProjects(mUser)
-                        .subscribeOn(Schedulers.io())
-                        .doOnSuccess(mStorage::insertUserProjects)
-                        .onErrorReturn(throwable ->
-                                ApiUtils.NETWORK_EXCEPTIONS.contains(throwable.getClass()) ? mStorage.getUserProjects(mUser) : null)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .doOnSubscribe(disposable -> getViewState().showRefresh())
-                        .doFinally(getViewState()::hideRefresh)
-                        .subscribe(
-                                response -> getViewState().showUserProjects(response.getUserProjects()),
-                                        throwable->getViewState().showError())
-                                );
-
-    }
-*/
 
 
     public void getProjects(String mUsername) {
@@ -52,11 +34,11 @@ public class UserProjectsPresenter extends BasePresenter<UserProjectsView> {
                         .onErrorReturn(throwable ->
                                 ApiUtils.NETWORK_EXCEPTIONS.contains(throwable.getClass()) ? mStorage.getProjects() : null)
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doOnSubscribe(disposable -> mView.showRefresh())
-                        .doFinally(mView::hideRefresh)
+                        .doOnSubscribe(disposable -> getViewState().showRefresh())
+                        .doFinally(getViewState()::hideRefresh)
                         .subscribe(
-                                response -> mView.showProjects(response.getProjects()),
-                                throwable -> mView.showError())
+                                response -> getViewState().showProjects(response.getProjects()),
+                                throwable -> getViewState().showError())
         );
     }
 
