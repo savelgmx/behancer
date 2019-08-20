@@ -10,7 +10,7 @@ import com.elegion.test.behancer.data.model.project.Owner;
 import com.elegion.test.behancer.data.model.project.Project;
 import com.elegion.test.behancer.data.model.user.Image;
 import com.elegion.test.behancer.data.model.user.User;
-import com.elegion.test.behancer.data.model.userprojects.UserProjects;
+
 
 import java.util.List;
 
@@ -35,8 +35,6 @@ public interface BehanceDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertImage(Image image);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertUserProjects(List<UserProjects> userProjects);
 
     @Query("select * from project")
     List<Project> getProjects();
@@ -53,14 +51,6 @@ public interface BehanceDao {
     @Query("select * from image where user_id = :userId")
     Image getImageFromUser(int userId);
 
-    //получить список проектов пользователя по его имени on userprojects.project_id = project.project_id"
-    //select *from project inner join userprojects on userprojects.project_id = project.id where username=:userName
-
-    @Query("select *from userprojects where username=:userName")
-
-    List<UserProjects> getUserProjectsByUserName(String userName);
-
-
     @Query("delete from owner")
     void clearOwnerTable();
 
@@ -70,8 +60,6 @@ public interface BehanceDao {
     @Query("delete from image")
     void clearImageTable();
 
-    @Query("delete from userprojects")
-    void clearUserProjectsTable();
 
     @Query("select * from user")
     List<User> getUsers();

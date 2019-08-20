@@ -10,8 +10,6 @@ import com.elegion.test.behancer.data.model.project.ProjectResponse;
 import com.elegion.test.behancer.data.model.user.Image;
 import com.elegion.test.behancer.data.model.user.User;
 import com.elegion.test.behancer.data.model.user.UserResponse;
-import com.elegion.test.behancer.data.model.userprojects.UserProjects;
-import com.elegion.test.behancer.data.model.userprojects.UserProjectsResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,20 +89,6 @@ public class Storage {
         response.setUser(user);
 
         return response;
-    }
-    public void insertUserProjects(UserProjectsResponse response){
-        List<UserProjects> userProjects = mBehanceDao.getUserProjectsByUserName("hui");
-
-        }
-
-
-    public UserProjectsResponse getUserProjects(String username){
-        List<UserProjects> userProjects = mBehanceDao.getUserProjectsByUserName(username);
-
-        UserProjectsResponse response= new UserProjectsResponse(); //userprojects
-        response.setUserProjects(userProjects);
-
-        return response;//userprojects
     }
 
     public interface StorageOwner {

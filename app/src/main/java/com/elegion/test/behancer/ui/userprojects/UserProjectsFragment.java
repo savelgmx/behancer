@@ -39,7 +39,7 @@ public class UserProjectsFragment extends PresenterFragment
     private RecyclerView mRecyclerView;
     private RefreshOwner mRefreshOwner;
     private View mErrorView;
-    private UserProjectsAdapter mUserProjectsAdapter;
+
     private Storage mStorage;
     private String mUsername;
     private ProjectsAdapter mProjectsAdapter;
@@ -141,18 +141,6 @@ public static UserProjectsFragment newInstance(Bundle args){
     }
 
 
-
-/*
-    @Override
-    public void showUserProjects(List<UserProjects> userprojects) {
-        mErrorView.setVisibility(View.GONE);
-        mRecyclerView.setVisibility(View.VISIBLE);
-
-        mUserProjectsAdapter.addData(userprojects,true);
-
-    }
-
-*/
 @Override
 public void showProjects(@NonNull List<Project> projects) {
     mErrorView.setVisibility(View.GONE);
